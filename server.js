@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import paymentRoutes from "./routes/payment.routes.js";
-// import webhookRoutes from './routes/webhook.routes.js';
+import webhookRoutes from './routes/webhook.routes.js';
 dotenv.config();
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(
     credentials: true,
   })
 );
-// app.use('/webhook', webhookRoutes);
+app.use('/webhook', webhookRoutes);
 app.use(express.json());
 app.use(cookieParser());
 
