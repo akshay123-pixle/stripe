@@ -13,7 +13,7 @@ app.use(
     credentials: true,
   })
 );
-app.use('/webhook', webhookRoutes);
+app.use('/stripe', webhookRoutes);
 app.use(express.json());
 app.use(cookieParser());
 
