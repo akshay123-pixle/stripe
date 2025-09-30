@@ -7,6 +7,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Hardcoded Checkout Session
 export const vCreate = async (req, res) => {
+  console.log("Hi From Backend");
+  
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
