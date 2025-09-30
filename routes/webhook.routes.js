@@ -12,7 +12,7 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 router.post("/", bodyParser.raw({ type: "application/json" }), (req, res) => {
   console.log("Im into the webhook");
-  
+
   const sig = req.headers["stripe-signature"];
   let event;
 
@@ -39,6 +39,13 @@ router.post("/", bodyParser.raw({ type: "application/json" }), (req, res) => {
     case "payment_intent.succeeded": {
       const paymentIntent = event.data.object;
       console.log("✅ Payment intent succeeded");
+      console.log("PaymentIntent:", paymentIntent);
+      break;
+    }
+
+    case "payment_intent.payment_failed": {
+      const paymentIntent = event.data.object;
+      console.log("❌ Payment intent failed");
       console.log("PaymentIntent:", paymentIntent);
       break;
     }
